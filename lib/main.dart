@@ -1,4 +1,5 @@
 import 'package:e_library/screen/home.dart';
+import 'package:e_library/screen/upload.dart';
 import 'package:e_library/utils.dart';
 
 import 'package:flutter/material.dart';
@@ -14,8 +15,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return  MaterialApp(
       home: Scaffold(
-        backgroundColor: primaryColor,
-        body: const Home()),
+        // backgroundColor: primaryColor,
+        body: const Upload()),
     );
   }
 }

@@ -9,7 +9,7 @@ class Home extends StatelessWidget {
     return Column(
       children: [
         const Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: EdgeInsets.all(32.0),
           child: Text(
             "Reachsa Library",
             style: TextStyle(
