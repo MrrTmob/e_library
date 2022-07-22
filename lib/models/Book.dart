@@ -29,9 +29,6 @@ class Book extends Model {
   static const classType = const _BookModelType();
   final String id;
   final String? _title;
-  final String? _author;
-  final String? _page;
-  final String? _language;
   final String? _bookUrl;
   final String? _imageUrl;
   final String? _authorID;
@@ -57,27 +54,6 @@ class Book extends Model {
           underlyingException: e.toString()
           );
     }
-  }
-  
-  String get author {
-    try {
-      return _author!;
-    } catch(e) {
-      throw new AmplifyCodeGenModelException(
-          AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
-          recoverySuggestion:
-            AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
-          underlyingException: e.toString()
-          );
-    }
-  }
-  
-  String? get page {
-    return _page;
-  }
-  
-  String? get language {
-    return _language;
   }
   
   String get bookUrl {
@@ -127,15 +103,12 @@ class Book extends Model {
     return _updatedAt;
   }
   
-  const Book._internal({required this.id, required title, required author, page, language, required bookUrl, required imageUrl, required authorID, createdAt, updatedAt}): _title = title, _author = author, _page = page, _language = language, _bookUrl = bookUrl, _imageUrl = imageUrl, _authorID = authorID, _createdAt = createdAt, _updatedAt = updatedAt;
+  const Book._internal({required this.id, required title, required bookUrl, required imageUrl, required authorID, createdAt, updatedAt}): _title = title, _bookUrl = bookUrl, _imageUrl = imageUrl, _authorID = authorID, _createdAt = createdAt, _updatedAt = updatedAt;
   
-  factory Book({String? id, required String title, required String author, String? page, String? language, required String bookUrl, required String imageUrl, required String authorID}) {
+  factory Book({String? id, required String title, required String bookUrl, required String imageUrl, required String authorID}) {
     return Book._internal(
       id: id == null ? UUID.getUUID() : id,
       title: title,
-      author: author,
-      page: page,
-      language: language,
       bookUrl: bookUrl,
       imageUrl: imageUrl,
       authorID: authorID);
@@ -151,9 +124,6 @@ class Book extends Model {
     return other is Book &&
       id == other.id &&
       _title == other._title &&
-      _author == other._author &&
-      _page == other._page &&
-      _language == other._language &&
       _bookUrl == other._bookUrl &&
       _imageUrl == other._imageUrl &&
       _authorID == other._authorID;
@@ -169,9 +139,6 @@ class Book extends Model {
     buffer.write("Book {");
     buffer.write("id=" + "$id" + ", ");
     buffer.write("title=" + "$_title" + ", ");
-    buffer.write("author=" + "$_author" + ", ");
-    buffer.write("page=" + "$_page" + ", ");
-    buffer.write("language=" + "$_language" + ", ");
     buffer.write("bookUrl=" + "$_bookUrl" + ", ");
     buffer.write("imageUrl=" + "$_imageUrl" + ", ");
     buffer.write("authorID=" + "$_authorID" + ", ");
@@ -182,13 +149,10 @@ class Book extends Model {
     return buffer.toString();
   }
   
-  Book copyWith({String? id, String? title, String? author, String? page, String? language, String? bookUrl, String? imageUrl, String? authorID}) {
+  Book copyWith({String? id, String? title, String? bookUrl, String? imageUrl, String? authorID}) {
     return Book._internal(
       id: id ?? this.id,
       title: title ?? this.title,
-      author: author ?? this.author,
-      page: page ?? this.page,
-      language: language ?? this.language,
       bookUrl: bookUrl ?? this.bookUrl,
       imageUrl: imageUrl ?? this.imageUrl,
       authorID: authorID ?? this.authorID);
@@ -197,9 +161,6 @@ class Book extends Model {
   Book.fromJson(Map<String, dynamic> json)  
     : id = json['id'],
       _title = json['title'],
-      _author = json['author'],
-      _page = json['page'],
-      _language = json['language'],
       _bookUrl = json['bookUrl'],
       _imageUrl = json['imageUrl'],
       _authorID = json['authorID'],
@@ -207,14 +168,11 @@ class Book extends Model {
       _updatedAt = json['updatedAt'] != null ? TemporalDateTime.fromString(json['updatedAt']) : null;
   
   Map<String, dynamic> toJson() => {
-    'id': id, 'title': _title, 'author': _author, 'page': _page, 'language': _language, 'bookUrl': _bookUrl, 'imageUrl': _imageUrl, 'authorID': _authorID, 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
+    'id': id, 'title': _title, 'bookUrl': _bookUrl, 'imageUrl': _imageUrl, 'authorID': _authorID, 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
   };
 
   static final QueryField ID = QueryField(fieldName: "book.id");
   static final QueryField TITLE = QueryField(fieldName: "title");
-  static final QueryField AUTHOR = QueryField(fieldName: "author");
-  static final QueryField PAGE = QueryField(fieldName: "page");
-  static final QueryField LANGUAGE = QueryField(fieldName: "language");
   static final QueryField BOOKURL = QueryField(fieldName: "bookUrl");
   static final QueryField IMAGEURL = QueryField(fieldName: "imageUrl");
   static final QueryField AUTHORID = QueryField(fieldName: "authorID");
@@ -238,24 +196,6 @@ class Book extends Model {
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
       key: Book.TITLE,
       isRequired: true,
-      ofType: ModelFieldType(ModelFieldTypeEnum.string)
-    ));
-    
-    modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: Book.AUTHOR,
-      isRequired: true,
-      ofType: ModelFieldType(ModelFieldTypeEnum.string)
-    ));
-    
-    modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: Book.PAGE,
-      isRequired: false,
-      ofType: ModelFieldType(ModelFieldTypeEnum.string)
-    ));
-    
-    modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: Book.LANGUAGE,
-      isRequired: false,
       ofType: ModelFieldType(ModelFieldTypeEnum.string)
     ));
     
