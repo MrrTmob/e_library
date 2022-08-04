@@ -4,13 +4,11 @@
   "bucketName": "elibrary0230b30e64bc49e09d4cc27d3608d97d",
   "storageAccess": "authAndGuest",
   "guestAccess": [
-    "CREATE_AND_UPDATE",
-    "READ",
-    "DELETE"
+    "READ"
   ],
   "authAccess": [
-    "CREATE_AND_UPDATE",
     "READ",
+    "CREATE_AND_UPDATE",
     "DELETE"
   ],
   "triggerFunction": "NONE",

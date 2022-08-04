@@ -6,7 +6,8 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return 
+    Scaffold(body: Column(
       children: [
         const Padding(
           padding: EdgeInsets.all(32.0),
@@ -39,6 +40,7 @@ class Home extends StatelessWidget {
           ),
         ),
       ],
-    );
+    ));
+    
   }
 }
